@@ -1,0 +1,48 @@
+name: ⚙️ CI - Build & Test
+
+on:
+  push:
+    branches:
+      - dev
+      - main
+  pull_request:
+    branches:
+      - dev
+      - main
+
+jobs:
+  ci-pipeline:
+    name: 🧩 Build & Test (Java ${{ matrix.java-version }})
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./appointment
+    strategy:
+      matrix:
+        java-version: [21.x]
+
+    steps:
+      - name: 📥 Checkout repository
+        uses: actions/checkout@v4
+
+      - name: ☕ Setup Java ${{ matrix.java-version }}
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: ${{ matrix.java-version }}
+          cache: 'maven'
+          cache-dependency-path: '**/pom.xml'
+
+      - name: 📁 Print environment
+        run: |
+          java -version
+          mvn -v
+
+      - name: 📦 Build (clean + package)
+        run: mvn -B -ntp -f ./pom.xml clean package
+
+      - name: 🧪 Run tests
+        run: mvn -B -f ./pom.xml test
+
+      - name: 🕒 Finalização
+        run: echo "🚀 Pipeline completed successfully. (Java ${{ matrix.java-version }})"
