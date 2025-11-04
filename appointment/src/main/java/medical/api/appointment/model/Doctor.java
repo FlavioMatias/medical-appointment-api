@@ -22,14 +22,20 @@ public class Doctor {
     @Column(nullable = false, unique = true)
     private String licenseNumber;
 
+    @Column(nullable = false)
     private String specialty;
 
     private String email;
 
     private String phoneNumber;
 
-    @OneToMany(mappedBy = "doctor")
+    @ManyToOne
+    @JoinColumn(nullable = false)
+    private User scheduler;
+
+    @OneToMany(mappedBy = "doctor", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Appointment> appointments;
+
 
     @PrePersist
     @PreUpdate
