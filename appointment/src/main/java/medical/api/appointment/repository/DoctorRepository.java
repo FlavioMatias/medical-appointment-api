@@ -1,0 +1,2 @@
+@Repository
+public interface DoctorRepository extends JpaRepository<Doctor, Long>{}
