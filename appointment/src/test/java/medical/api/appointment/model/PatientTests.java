@@ -1,5 +1,6 @@
 package medical.api.appointment.model;
 
+import medical.api.appointment.enums.InsurancePlan;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.*;
@@ -60,7 +61,7 @@ class PatientTests {
         Patient patient = new Patient();
         patient.setName("Carlos Souza");
         patient.setCpf("12345678901");
-        patient.setInsurancePlan("Premium");
+        patient.setInsurancePlan(InsurancePlan.BASIC);
 
         assertThatCode(patient::onCreate)
                 .doesNotThrowAnyException();
