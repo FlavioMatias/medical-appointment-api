@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import medical.api.appointment.enums.AppointmentType;
+import medical.api.appointment.common.enums.AppointmentType;
 
 import java.time.LocalDateTime;
 
@@ -17,19 +17,26 @@ public class Appointment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false)
     private LocalDateTime dateTime;
 
-    @Enumerated(EnumType.STRING)
-    private AppointmentType type;
-
     @ManyToOne
+    @JoinColumn(nullable = false)
     private Doctor doctor;
 
+    @Column(nullable = false)
     private String room;
 
     @ManyToOne
+    @JoinColumn(nullable = false)
     private Patient patient;
 
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private AppointmentType type;
+
     @ManyToOne
+    @JoinColumn(nullable = false)
     private User scheduler;
 }

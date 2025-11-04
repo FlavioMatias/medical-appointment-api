@@ -4,7 +4,8 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import medical.api.appointment.enums.PatientStatus;
+import medical.api.appointment.common.enums.InsurancePlan;
+import medical.api.appointment.common.enums.PatientStatus;
 
 
 @Entity
@@ -22,10 +23,15 @@ public class Patient {
     @Column(nullable = false, unique = true)
     private String cpf;
 
-    private String insurancePlan;
+    @Enumerated(EnumType.STRING)
+    private InsurancePlan insurancePlan;
 
     @Enumerated(EnumType.STRING)
     private PatientStatus status;
+
+    @ManyToOne
+    private User scheduler;
+
 
 
     @PrePersist

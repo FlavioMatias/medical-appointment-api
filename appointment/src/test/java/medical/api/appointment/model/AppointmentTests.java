@@ -1,24 +1,44 @@
 package medical.api.appointment.model;
 
-import medical.api.appointment.enums.AppointmentType;
+import medical.api.appointment.common.enums.AppointmentType;
+import medical.api.appointment.common.enums.InsurancePlan;
+import medical.api.appointment.common.enums.PatientStatus;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 class AppointmentTests {
+
+    private User scheduler;
+    private Doctor doctor;
+    private Patient patient;
+
+    @BeforeEach
+    void setup() {
+        scheduler = new User(1L, "echo", "securePass");
+        doctor = new Doctor(
+                1L,
+                "Dr. House",
+                "1234/SP",
+                "Cardiology",
+                "house@hospital.com",
+                "+5511987654321",
+                scheduler,
+                new ArrayList<>() // lista vazia de appointments
+        );
+        patient = new Patient(1L, "John Doe", "12345678901", InsurancePlan.BASIC, PatientStatus.ACTIVE, scheduler);
+    }
 
     @Test
     @DisplayName("Should create Appointment using all-args constructor correctly")
     void shouldCreateAppointmentWithAllArgsConstructor() {
-        Doctor doctor = new Doctor(1L, "Dr. House", "1234/SP", "Cardiology", "house@hospital.com", "+5511987654321", null);
-        Patient patient = new Patient(1L, "John Doe", "12345678901", "Premium", null);
-        User scheduler = new User(1L, "echo", "securePass", "ADMIN");
         LocalDateTime dateTime = LocalDateTime.of(2025, 1, 1, 14, 0);
-
-        Appointment appointment = new Appointment(1L, dateTime, AppointmentType.ROUTINE, doctor, "Room 12", patient, scheduler);
+        Appointment appointment = new Appointment(1L, dateTime,  doctor, "Room 12", patient, AppointmentType.ROUTINE, scheduler);
 
         assertThat(appointment.getId()).isEqualTo(1L);
         assertThat(appointment.getDateTime()).isEqualTo(dateTime);
@@ -34,10 +54,6 @@ class AppointmentTests {
     void shouldSetAndGetFieldsCorrectly() {
         Appointment appointment = new Appointment();
         LocalDateTime dateTime = LocalDateTime.of(2025, 5, 10, 9, 30);
-
-        Doctor doctor = new Doctor();
-        Patient patient = new Patient();
-        User scheduler = new User();
 
         appointment.setId(10L);
         appointment.setDateTime(dateTime);
