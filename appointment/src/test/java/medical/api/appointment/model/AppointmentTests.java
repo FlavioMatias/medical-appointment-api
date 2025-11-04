@@ -1,8 +1,8 @@
 package medical.api.appointment.model;
 
-import medical.api.appointment.enums.AppointmentType;
-import medical.api.appointment.enums.InsurancePlan;
-import medical.api.appointment.enums.PatientStatus;
+import medical.api.appointment.common.enums.AppointmentType;
+import medical.api.appointment.common.enums.InsurancePlan;
+import medical.api.appointment.common.enums.PatientStatus;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

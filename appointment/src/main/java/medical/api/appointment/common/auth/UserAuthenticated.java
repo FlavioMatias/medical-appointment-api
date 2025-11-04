@@ -1,8 +1,7 @@
-package medical.api.appointment.auth;
+package medical.api.appointment.common.auth;
 
 import medical.api.appointment.model.User;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;

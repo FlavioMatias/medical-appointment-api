@@ -1,4 +1,4 @@
-package medical.api.appointment.auth;
+package medical.api.appointment.common.auth;
 
 import org.springframework.context.annotation.Primary;
 import org.springframework.security.core.Authentication;

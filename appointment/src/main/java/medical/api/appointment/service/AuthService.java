@@ -1,7 +1,7 @@
 package medical.api.appointment.service;
 
-import medical.api.appointment.auth.JWTService;
-import medical.api.appointment.auth.UserAuthenticated;
+import medical.api.appointment.common.auth.JWTService;
+import medical.api.appointment.common.auth.UserAuthenticated;
 import medical.api.appointment.dto.SignupRequestDTO;
 import medical.api.appointment.model.User;
 import medical.api.appointment.repository.UserRepository;

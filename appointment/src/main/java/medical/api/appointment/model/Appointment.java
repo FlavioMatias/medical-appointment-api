@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import medical.api.appointment.enums.AppointmentType;
+import medical.api.appointment.common.enums.AppointmentType;
 
 import java.time.LocalDateTime;
 
