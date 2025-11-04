@@ -15,3 +15,8 @@ spring:
     console:
       enabled: true
       path: /h2-console
+jwt:
+  private:
+    key: classpath:app.key
+  public:
+    key: classpath:app.pub
