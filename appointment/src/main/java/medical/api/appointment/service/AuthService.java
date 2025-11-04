@@ -5,6 +5,7 @@ import medical.api.appointment.auth.UserAuthenticated;
 import medical.api.appointment.dto.SignupRequestDTO;
 import medical.api.appointment.model.User;
 import medical.api.appointment.repository.UserRepository;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -21,7 +22,7 @@ public class AuthService implements UserDetailsService {
     private final PasswordEncoder passwordEncoder;
 
 
-    public AuthService(UserRepository userRepo, JWTService jwtService, AuthenticationManager authManager, PasswordEncoder passwordEncoder) {
+    public AuthService(UserRepository userRepo, JWTService jwtService, @Lazy AuthenticationManager authManager, PasswordEncoder passwordEncoder) {
         this.userRepo = userRepo;
         this.jwtService = jwtService;
         this.authManager = authManager;
