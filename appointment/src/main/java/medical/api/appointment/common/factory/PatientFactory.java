@@ -2,7 +2,7 @@ package medical.api.appointment.common.factory;
 
 
 import medical.api.appointment.common.enums.PatientStatus;
-import medical.api.appointment.dto.PatientRequestDTO;
+import medical.api.appointment.dto.patient.PatientRequestDTO;
 import medical.api.appointment.model.Patient;
 import medical.api.appointment.model.User;
 

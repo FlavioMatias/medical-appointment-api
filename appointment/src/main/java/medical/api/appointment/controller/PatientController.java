@@ -1,9 +1,9 @@
 package medical.api.appointment.controller;
 
 import medical.api.appointment.common.auth.UserAuthenticated;
-import medical.api.appointment.dto.PatientFilterDTO;
-import medical.api.appointment.dto.PatientRequestDTO;
-import medical.api.appointment.dto.PatientResponseDTO;
+import medical.api.appointment.dto.patient.PatientFilterDTO;
+import medical.api.appointment.dto.patient.PatientRequestDTO;
+import medical.api.appointment.dto.patient.PatientResponseDTO;
 import medical.api.appointment.service.PatientService;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
