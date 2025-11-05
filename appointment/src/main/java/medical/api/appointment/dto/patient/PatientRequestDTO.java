@@ -1,4 +1,4 @@
-package medical.api.appointment.dto;
+package medical.api.appointment.dto.patient;
 
 import medical.api.appointment.common.enums.InsurancePlan;
 
