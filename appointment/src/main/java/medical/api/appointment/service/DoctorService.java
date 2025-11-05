@@ -15,10 +15,12 @@ import medical.api.appointment.repository.DoctorRepository;
 import medical.api.appointment.repository.UserRepository;
 import medical.api.appointment.specfications.DoctorSpecifications;
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+@Service
 public class DoctorService {
     private final DoctorRepository doctorRepo;
     private final UserRepository userRepo;
@@ -41,6 +43,7 @@ public class DoctorService {
         return DoctorMapper.toResponse(doctor);
     }
 
+    @Transactional
     public DoctorResponseDTO create(DoctorRequestDTO dto, Long userId ){
         User scheduler =  userRepo.findById(userId)
                 .orElseThrow(() -> new RuntimeException("Scheduler not found"));
@@ -51,6 +54,7 @@ public class DoctorService {
         );
     }
 
+    @Transactional
     public DoctorResponseDTO update(Long id, DoctorRequestDTO dto){
         Doctor doctor = doctorRepo.findById(id)
                 .orElseThrow(() -> new RuntimeException("Doctor not found"));
@@ -59,6 +63,8 @@ public class DoctorService {
                 doctorRepo.save(doctor)
         );
     }
+
+    @Transactional
     public void delete(Long id){
         doctorRepo.deleteById(id);
     }
