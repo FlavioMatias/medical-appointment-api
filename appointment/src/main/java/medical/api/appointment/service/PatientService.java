@@ -1,9 +1,9 @@
 package medical.api.appointment.service;
 
 import medical.api.appointment.common.factory.PatientFactory;
-import medical.api.appointment.dto.PatientFilterDTO;
-import medical.api.appointment.dto.PatientRequestDTO;
-import medical.api.appointment.dto.PatientResponseDTO;
+import medical.api.appointment.dto.patient.PatientFilterDTO;
+import medical.api.appointment.dto.patient.PatientRequestDTO;
+import medical.api.appointment.dto.patient.PatientResponseDTO;
 import medical.api.appointment.mapper.PatientMapper;
 import medical.api.appointment.model.Patient;
 import medical.api.appointment.model.User;

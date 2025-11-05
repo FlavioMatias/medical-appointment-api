@@ -1,7 +1,7 @@
 package medical.api.appointment.mapper;
 
-import medical.api.appointment.dto.PatientRequestDTO;
-import medical.api.appointment.dto.PatientResponseDTO;
+import medical.api.appointment.dto.patient.PatientRequestDTO;
+import medical.api.appointment.dto.patient.PatientResponseDTO;
 import medical.api.appointment.model.Patient;
 
 public class PatientMapper {
