@@ -6,6 +6,7 @@ import medical.api.appointment.dto.doctor.DoctorRequestDTO;
 import medical.api.appointment.dto.doctor.DoctorResponseDTO;
 import medical.api.appointment.service.DoctorService;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -39,9 +40,10 @@ public class DoctorController {
     @PostMapping
     public DoctorResponseDTO create(
             @RequestBody DoctorRequestDTO dto,
-            @AuthenticationPrincipal UserAuthenticated user
+            @AuthenticationPrincipal Jwt jwt
     ) {
-        return doctorService.create(dto, user.getId());
+        Long userId = jwt.getClaim("userId");
+        return doctorService.create(dto, userId);
     }
 
     @PutMapping("/{id}")

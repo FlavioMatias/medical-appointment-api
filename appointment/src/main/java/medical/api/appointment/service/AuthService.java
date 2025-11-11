@@ -45,9 +45,15 @@ public class AuthService implements UserDetailsService {
         user.setPassword(passwordEncoder.encode(data.password()));
         userRepo.save(user);
 
-        return jwtService.generateToken(
-                new UsernamePasswordAuthenticationToken(user.getUsername(), data.password())
+        var userDetails = new UserAuthenticated(user);
+
+        var authToken = new UsernamePasswordAuthenticationToken(
+                userDetails,
+                null,
+                userDetails.getAuthorities()
         );
+
+        return jwtService.generateToken(authToken);
     }
 
     @Override
