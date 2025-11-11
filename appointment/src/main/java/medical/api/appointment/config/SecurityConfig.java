@@ -39,19 +39,22 @@ public class SecurityConfig {
     SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
                 .csrf(csrf -> csrf.disable())
+                .cors(cors -> cors.disable()) // Se quiser liberar tudo, ou usa o CorsConfig separado
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(
                                 "/auth/**",
                                 "/v3/api-docs/**",
                                 "/swagger-ui/**",
-                                "/swagger-ui.html"
+                                "/swagger-ui.html",
+                                "/webjars/**"
                         ).permitAll()
                         .anyRequest().authenticated()
                 )
-                .oauth2ResourceServer(config -> config.jwt());
+                .oauth2ResourceServer(oauth2 -> oauth2.jwt(Customizer.withDefaults()));
 
         return http.build();
     }
+
 
     @Bean
     JwtDecoder jwtDecoder(){
@@ -70,4 +73,5 @@ public class SecurityConfig {
     PasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();
     }
+    
 }
